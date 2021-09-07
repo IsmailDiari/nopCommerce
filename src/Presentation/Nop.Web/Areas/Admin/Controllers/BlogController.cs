@@ -340,7 +340,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (selectedIds == null || selectedIds.Count() == 0)
-                return BadRequest(new { responseText = await _localizationService.GetResourceAsync("Admin.Common.Alert.Delete.Info") });
+                return NoContent();
 
             var comments = await _blogService.GetBlogCommentsByIdsAsync(selectedIds.ToArray());
 
@@ -362,7 +362,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (selectedIds == null || selectedIds.Count() == 0)
-                return BadRequest(new { responseText = await _localizationService.GetResourceAsync("Admin.Common.Alert.Delete.Info") });
+                return NoContent();
 
             //filter not approved comments
             var blogComments = (await _blogService.GetBlogCommentsByIdsAsync(selectedIds.ToArray())).Where(comment => !comment.IsApproved);
@@ -391,7 +391,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (selectedIds == null || selectedIds.Count() == 0)
-                return BadRequest(new { responseText = await _localizationService.GetResourceAsync("Admin.Common.Alert.Delete.Info") });
+                return NoContent();
 
             //filter approved comments
             var blogComments = (await _blogService.GetBlogCommentsByIdsAsync(selectedIds.ToArray())).Where(comment => comment.IsApproved);

@@ -363,7 +363,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (selectedIds == null || selectedIds.Count() == 0)
-                return BadRequest(new { responseText = await _localizationService.GetResourceAsync("Admin.Common.Alert.Delete.Info") });
+                return NoContent();
 
             var checkoutAttributes = await _checkoutAttributeService.GetCheckoutAttributeByIdsAsync(selectedIds.ToArray());
             await _checkoutAttributeService.DeleteCheckoutAttributesAsync(checkoutAttributes);

@@ -437,7 +437,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (selectedIds == null || selectedIds.Count() == 0)
-                return BadRequest(new { responseText = await _localizationService.GetResourceAsync("Admin.Common.Alert.Delete.Info") });
+                return NoContent();
 
             await _categoryService.DeleteCategoriesAsync(await (await _categoryService.GetCategoriesByIdsAsync(selectedIds.ToArray())).WhereAwait(async p => await _workContext.GetCurrentVendorAsync() == null).ToListAsync());
 

@@ -202,7 +202,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (selectedIds == null || selectedIds.Count() == 0)
-                return BadRequest(new { responseText = await _localizationService.GetResourceAsync("Admin.Common.Alert.Delete.Info") });
+                return NoContent();
 
             await _queuedEmailService.DeleteQueuedEmailsAsync(await _queuedEmailService.GetQueuedEmailsByIdsAsync(selectedIds.ToArray()));
 

@@ -230,7 +230,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return RedirectToAction("List");
 
             if (selectedIds == null || selectedIds.Count() == 0)
-                return BadRequest(new { responseText = await _localizationService.GetResourceAsync("Admin.Common.Alert.Approve.Info") });
+                return NoContent();
 
             //filter not approved reviews
             var productReviews = (await _productService.GetProductReviewsByIdsAsync(selectedIds.ToArray())).Where(review => !review.IsApproved);
@@ -263,7 +263,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return RedirectToAction("List");
 
             if (selectedIds == null || selectedIds.Count() == 0)
-                return BadRequest(new { responseText = await _localizationService.GetResourceAsync("Admin.Common.Alert.Disapprove.Info") });
+                return NoContent();
 
             //filter approved reviews
             var productReviews = (await _productService.GetProductReviewsByIdsAsync(selectedIds.ToArray())).Where(review => review.IsApproved);
@@ -293,7 +293,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return RedirectToAction("List");
 
             if (selectedIds == null || selectedIds.Count() == 0)
-                return BadRequest(new { responseText = await _localizationService.GetResourceAsync("Admin.Common.Alert.Delete.Info") });
+                return NoContent();
 
             var productReviews = await _productService.GetProductReviewsByIdsAsync(selectedIds.ToArray());
             var products = await _productService.GetProductsByIdsAsync(productReviews.Select(p => p.ProductId).Distinct().ToArray());

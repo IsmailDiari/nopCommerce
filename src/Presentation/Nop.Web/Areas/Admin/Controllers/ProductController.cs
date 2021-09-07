@@ -1130,7 +1130,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (selectedIds == null || selectedIds.Count() == 0)
-                return BadRequest(new { responseText = await _localizationService.GetResourceAsync("Admin.Common.Alert.Delete.Info") });
+                return NoContent();
 
             await _productService.DeleteProductsAsync(await (await _productService.GetProductsByIdsAsync(selectedIds.ToArray()))
                 .WhereAwait(async p => await _workContext.GetCurrentVendorAsync() == null || p.VendorId == (await _workContext.GetCurrentVendorAsync()).Id).ToListAsync());
@@ -2042,7 +2042,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (selectedIds == null || selectedIds.Count() == 0)
-                return BadRequest(new { responseText = await _localizationService.GetResourceAsync("Admin.Common.Alert.Delete.Info") });
+                return NoContent();
 
             var tags = await _productTagService.GetProductTagsByIdsAsync(selectedIds.ToArray());
             await _productTagService.DeleteProductTagsAsync(tags);
