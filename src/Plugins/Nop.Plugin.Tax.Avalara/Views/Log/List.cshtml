@@ -103,7 +103,7 @@
                             complete: function (jqXHR, textStatus) {
                                 if (jqXHR.status === 204)
                                 {
-                                    showAlert('deleteSelectedFailed', '@T("Admin.Common.Alert.NothingSelected")');
+                                    showAlert('nothingSelectedAlert', '@T("Admin.Common.Alert.NothingSelected")');
                                     return;
                                 }
                                 updateTable('#log-grid');
@@ -125,3 +125,4 @@
     </div>
 </div>
 <nop-alert asp-alert-id="deleteSelectedFailed" />
+<nop-alert asp-alert-id="nothingSelectedAlert" />
